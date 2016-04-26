@@ -37,7 +37,8 @@ calltree.stop();
 
 When you are ready with the installation and have placed the instrumentation start/stop calls run:
 ```
-rm -rf platforms/ && tns run ios | ./node_modules/.bin/calltreefilter logfile.js
+tns run ios | ./node_modules/.bin/calltreefilter log.js
 ```
 The `calltreefilter` will redirect trace console logs to the logfile.js leaving other logs in the terminal.
 Open `logfile.js` with VSCode, you should be able to use codefolding to navigate through calls.
+

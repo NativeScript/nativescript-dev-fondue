@@ -3,6 +3,14 @@ var traceDepth = 0;
 var eventQueue = [];
 var nodes = {};
 
+var time = function() { return 0; };
+if (global.android) {
+	var sys = java.lang.System;
+	time = function() { return sys.nanoTime() / 1000000; }
+} else {
+	time = function() { return CACurrentMediaTime() * 1000; }
+}
+
 if (typeof __tracer !== 'undefined') {
 	console.log("The " + module.id + " is required, but __tracer was allready defined in global.");
 } else {
@@ -47,7 +55,7 @@ if (typeof __tracer !== 'undefined') {
 		if (traceDepth) {
 			eventQueue.push({
 				type: "enter",
-				time: new Date().getTime(),
+				time: time(),
 				nodeId: info.nodeId 
 			});
 		}
@@ -58,7 +66,7 @@ if (typeof __tracer !== 'undefined') {
 		if (traceDepth) {
 			eventQueue.push({
 				type: "exit",
-				time: new Date().getTime(),
+				time: time(),
 				nodeId: info.nodeId
 			});
 		}
@@ -137,6 +145,7 @@ function print() {
 		console.log("CALLTREE: " + indent + "} // missing end time");
 	}
 	eventQueue = [];
+	console.log("Reset trace event queue");
 }
 
 
