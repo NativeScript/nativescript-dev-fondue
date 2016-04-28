@@ -15,8 +15,8 @@ and `git reset --hard` after you are done profiling.
 
 To instrument files, at the root of your app use:
 ```
-./node_modules/.bin/globfondue "node_modules/tns-core-modules/**/*.js"
-./node_modules/.bin/globfondue "app/**/*.js"
+./node_modules/.bin/nsfondue "node_modules/tns-core-modules/**/*.js"
+./node_modules/.bin/nsfondue "app/**/*.js"
 ```
 Try not to instrument the fondue itself.
 
